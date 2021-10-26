@@ -1,0 +1,25 @@
+{
+  "name": "spm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "build": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muthu578/SPM_WEB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/muthu578/SPM_WEB/issues"
+  },
+  "homepage": "https://github.com/muthu578/SPM_WEB#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "proxy": "http://localhost:3001"
+}
