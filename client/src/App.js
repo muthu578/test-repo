@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 
 function App() {
   const [data, setData] = React.useState(null);
