@@ -14,9 +14,6 @@ export default function Dashboard() {
         <li>
           <Link to='/about'>About</Link>
         </li>
-        <li>
-          <Link to='/service'>Service</Link>
-        </li>
       </ul>
     </>
   );
