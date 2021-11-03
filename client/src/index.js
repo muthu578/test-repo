@@ -5,11 +5,12 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
+import Sidemenu from "./components/side_menu/sideMenu";
 
 const Routing = () => {
   return (
     <Router>
-      <Dashboard />
+      <Sidemenu />
       <Switch>
         <Route exact path='/' component={App} />
         <Route path='/home' component={Home} />

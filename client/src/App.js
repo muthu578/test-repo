@@ -12,11 +12,7 @@ function App() {
       .then((data) => setData(data.message));
   }, []);
 
-  return (
-    <div className='App'>
-      <header className='App-header'>Welcome To SPM</header>
-    </div>
-  );
+  return <div className='App'></div>;
 }
 
 export default App;
