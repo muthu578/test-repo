@@ -6,11 +6,13 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Sidemenu from "./components/side_menu/sideMenu";
+import AppHeader from "./components/AppHeader/AppHeader";
 
 const Routing = () => {
   return (
     <Router>
       <Sidemenu />
+      <AppHeader />
       <Switch>
         <Route exact path='/' component={App} />
         <Route path='/home' component={Home} />

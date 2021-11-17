@@ -1,6 +1,13 @@
 import React from "react";
 import { Layout, Menu, Breadcrumb } from "antd";
 import Icon from "@ant-design/icons";
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  UserOutlined,
+  VideoCameraOutlined,
+  UploadOutlined,
+} from "@ant-design/icons";
 import "./sideMenu.scss";
 
 const { Header, Content, Sider } = Layout;
@@ -39,25 +46,29 @@ class Sidemenu extends React.Component {
               collapsed={this.state.collapsed}
               onCollapse={this.onCollapse}>
               <Menu theme='dark' defaultSelectedKeys={["1"]} mode='inline'>
-                <Menu.Item key='1'>
-                  <Icon type='pie-chart' />
+                <Menu.Item key='1' icon={<UserOutlined />}>
                   <span>Option 1</span>
                 </Menu.Item>
-                <Menu.Item key='2'>
-                  <Icon type='desktop' />
+                <Menu.Item key='2' icon={<VideoCameraOutlined />}>
                   <span>Option 2</span>
                 </Menu.Item>
                 <SubMenu
                   key='sub1'
                   title={
                     <span>
-                      <Icon type='user' />
+                      <UploadOutlined />
                       <span>User</span>
                     </span>
                   }>
-                  <Menu.Item key='3'>Tom</Menu.Item>
-                  <Menu.Item key='4'>Bill</Menu.Item>
-                  <Menu.Item key='5'>Alex</Menu.Item>
+                  <Menu.Item key='3' icon={<MenuFoldOutlined />}>
+                    Tom
+                  </Menu.Item>
+                  <Menu.Item key='4' icon={<MenuUnfoldOutlined />}>
+                    Bill
+                  </Menu.Item>
+                  <Menu.Item key='5' icon={<VideoCameraOutlined />}>
+                    Alex
+                  </Menu.Item>
                 </SubMenu>
                 <SubMenu
                   key='sub2'

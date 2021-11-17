@@ -1,0 +1,121 @@
+.notfound {
+  background: url(../../assets/images/frameset_bg_404.svg);
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    .notfound_404container {
+      width: 980px;
+      height: 360px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      .notfound_404 {
+        background: url(../../assets/images/ic_nodata_404_box.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 444px;
+        height: 360px;
+        .notfound_404__box {
+          background: url(../../assets/images/ic_nodata_404_number.svg);
+          background-repeat: no-repeat;
+          background-size: 100%;
+          margin-top: 10px;
+          margin-left: 85px;
+          width: 280px;
+          height: 160px;
+          -webkit-transition: all 0.1s linear;
+          transition: all 0.1s linear;
+          -webkit-animation: floating 4s linear infinite;
+                  animation: floating 4s linear infinite;
+          z-index: 2;
+        }
+      }
+      .woops {
+          color: #525252;
+          height: 283px;
+          width: 536px;
+          padding: 30px 0 0 41px;
+          .error-title{
+            font-size: 60px;
+            color: #525252;
+          }
+          .error-message{
+            font-size: 24px;
+            color: #555555;
+            line-height: 28px;
+            padding: 11px 0 20px 0;
+          }
+          .error-description{
+            font-size: 16px;
+            color: #6E6B6B;
+            padding-bottom: 51px;
+            div{
+              line-height: 24px;
+            }
+          }
+          .go-to-dashboard-btn{
+            background-image: linear-gradient(90deg, #5247B6 0%, #9856B7 100%);
+            font-size: 22px;
+            min-width: 266px;
+            max-width: 300px;
+            height: 54px;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+        @-webkit-keyframes floating {
+          0%, 100% {
+            -webkit-transform: translate(-3px, 3px) rotate(2deg);
+                    transform: translate(-3px, 3px) rotate(2deg);
+          }
+          20% {
+            -webkit-transform: translate(3px, -1px) rotate(0deg);
+                    transform: translate(3px, -1px) rotate(0deg);
+          }
+          40% {
+            -webkit-transform: translate(0px, -3px) rotate(-2deg);
+                    transform: translate(0px, -3px) rotate(-2deg);
+          }
+          60% {
+            -webkit-transform: translate(3px, -2px) rotate(2deg);
+                    transform: translate(3px, -2px) rotate(2deg);
+          }
+          80% {
+            -webkit-transform: translate(3px, 2px) rotate(-2deg);
+                    transform: translate(3px, 2px) rotate(-2deg);
+          }
+        }
+        @keyframes floating {
+          0%, 100% {
+            -webkit-transform: translate(-3px, 3px) rotate(2deg);
+                    transform: translate(-3px, 3px) rotate(2deg);
+          }
+          20% {
+            -webkit-transform: translate(3px, -1px) rotate(0deg);
+                    transform: translate(3px, -1px) rotate(0deg);
+          }
+          40% {
+            -webkit-transform: translate(0px, -3px) rotate(-2deg);
+                    transform: translate(0px, -3px) rotate(-2deg);
+          }
+          60% {
+            -webkit-transform: translate(3px, -2px) rotate(2deg);
+                    transform: translate(3px, -2px) rotate(2deg);
+          }
+          80% {
+            -webkit-transform: translate(3px, 2px) rotate(-2deg);
+                    transform: translate(3px, 2px) rotate(-2deg);
+          }
+        }
+    }
+}
