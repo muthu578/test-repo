@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "./assets/css/spm.less";
-import "./assets/css/index.less";
+import "./assets/css/spm.scss";
+import "./assets/css/index.scss";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/Dashboard";

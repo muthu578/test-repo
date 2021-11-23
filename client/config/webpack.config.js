@@ -549,6 +549,14 @@ module.exports = function (webpackEnv) {
                 name: "static/media/[name].[hash:8].[ext]",
               },
             },
+            {
+              test: /\.less$/,
+              use: [
+                { loader: "style-loader" },
+                { loader: "css-loader" },
+                { loader: "less-loader" },
+              ],
+            },
             // ** STOP ** Are you adding a new loader?
             // Make sure to add the new loader(s) before the "file" loader.
           ],
