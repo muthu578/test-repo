@@ -6,7 +6,7 @@ import "./assets/css/index.scss";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import Home from "./pages/Home/Home";
+import Entities from "./pages/Entities/Entities";
 import About from "./pages/About/About";
 import Sidemenu from "./components/side_menu/sideMenu";
 import AppHeader from "./components/AppHeader/AppHeader";
@@ -17,7 +17,7 @@ const Routing = () => {
       <Sidemenu />
       <Switch>
         <Route exact path='/' component={App} />
-        <Route path='/home' component={Home} />
+        <Route path='/entities' component={Entities} />
         <Route path='/about' component={About} />
       </Switch>
     </Router>
