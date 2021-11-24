@@ -15,11 +15,6 @@ const Routing = () => {
   return (
     <Router>
       <Sidemenu />
-      <Switch>
-        <Route exact path='/' component={App} />
-        <Route path='/entities' component={Entities} />
-        <Route path='/about' component={About} />
-      </Switch>
     </Router>
   );
 };
