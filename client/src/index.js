@@ -15,7 +15,6 @@ const Routing = () => {
   return (
     <Router>
       <Sidemenu />
-      <AppHeader />
       <Switch>
         <Route exact path='/' component={App} />
         <Route path='/home' component={Home} />
