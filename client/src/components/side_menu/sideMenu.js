@@ -26,7 +26,7 @@ const { Header, Content, Sider } = Layout;
 class Sidemenu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { collapsed: false };
+    this.state = { collapsed: true };
   }
 
   onCollapse = (collapsed) => {
@@ -51,7 +51,12 @@ class Sidemenu extends React.Component {
               width={260}
               collapsedWidth={75}
               onCollapse={this.onCollapse}>
-              <Menu theme='dark' defaultSelectedKeys={["1"]} mode='inline'>
+              <Menu
+                theme='dark'
+                onMouseEnter={() => this.setState({ collapsed: false })}
+                onMouseLeave={() => this.setState({ collapsed: true })}
+                defaultSelectedKeys={["1"]}
+                mode='inline'>
                 <Menu.Item key='1' icon={<DASHBOARD_IC />}>
                   <span>Dashboard</span>
                   <Link to='/' />
