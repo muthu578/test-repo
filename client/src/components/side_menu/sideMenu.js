@@ -1,5 +1,6 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout, Menu, Breadcrumb, Dropdown, List, Avatar } from "antd";
+
 import logo from "../../../src/assets/images/logo.svg";
 import {
   DASHBOARD_IC,
@@ -9,6 +10,9 @@ import {
   POLICIES_IC,
   REPORT_IC,
   SETTINGS_IC,
+  ALERT_IC,
+  LANG_IC,
+  PROFILE_IC,
 } from "../../assets/images/icons/navigation/navigation";
 import "./sideMenu.scss";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -22,7 +26,20 @@ import Analysis from "../../pages/Analysis/Analysis";
 import Configuration from "../../pages/Configuration/Configuration";
 
 const { Header, Content, Sider } = Layout;
-
+const data = [
+  {
+    title: "Ant Design Title 1",
+  },
+  {
+    title: "Ant Design Title 2",
+  },
+  {
+    title: "Ant Design Title 3",
+  },
+  {
+    title: "Ant Design Title 4",
+  },
+];
 class Sidemenu extends React.Component {
   constructor(props) {
     super(props);
@@ -42,6 +59,101 @@ class Sidemenu extends React.Component {
             <div className='logo'>
               <img src={logo} alt='logo' />
               <p> Supermicro Power Manager </p>
+            </div>
+
+            <div className='header-grp'>
+              <>
+                <Dropdown
+                  overlay={
+                    <List
+                      itemLayout='horizontal'
+                      className='list_item'
+                      dataSource={data}
+                      renderItem={(item) => (
+                        <List.Item>
+                          <List.Item.Meta
+                            avatar={
+                              <Avatar src='https://joeschmoe.io/api/v1/random' />
+                            }
+                            title={
+                              <a href='https://ant.design'>{item.title}</a>
+                            }
+                            description='Ant Design, a design language for background applications, is refined by Ant UED Team'
+                          />
+                        </List.Item>
+                      )}
+                    />
+                  }
+                  trigger={["click"]}>
+                  <span
+                    className='ant-dropdown-link'
+                    onClick={(e) => e.preventDefault()}>
+                    <LANG_IC />
+                  </span>
+                </Dropdown>
+              </>
+              <>
+                <Dropdown
+                  overlay={
+                    <List
+                      itemLayout='horizontal'
+                      className='list_item'
+                      dataSource={data}
+                      renderItem={(item) => (
+                        <List.Item>
+                          <List.Item.Meta
+                            avatar={
+                              <Avatar src='https://joeschmoe.io/api/v1/random' />
+                            }
+                            title={
+                              <a href='https://ant.design'>{item.title}</a>
+                            }
+                            description='Ant Design, a design language for background applications, is refined by Ant UED Team'
+                          />
+                        </List.Item>
+                      )}
+                    />
+                  }
+                  trigger={["click"]}>
+                  <span
+                    className='ant-dropdown-link'
+                    onClick={(e) => e.preventDefault()}>
+                    <ALERT_IC />
+                  </span>
+                </Dropdown>
+              </>
+              <>
+                {/* <Dropdown
+                  overlay={
+                    <Menu>
+                      <Menu.Item key='0'>Menu Item One</Menu.Item>
+                      <Menu.Item key='1'>Menu Item Two</Menu.Item>
+                      <Menu.Item key='1'>Menu Item Three</Menu.Item>
+                    </Menu>
+                  }
+                  trigger={["click"]}>
+                  <span
+                    className='ant-dropdown-link'
+                    onClick={(e) => e.preventDefault()}>
+                    <PROFILE_IC />
+                  </span>
+                </Dropdown> */}
+                <Dropdown
+                  overlay={
+                    <Menu>
+                      <Menu.Item key='0'>Menu Item One</Menu.Item>
+                      <Menu.Item key='1'>Menu Item Two</Menu.Item>
+                      <Menu.Item key='1'>Menu Item Three</Menu.Item>
+                    </Menu>
+                  }
+                  trigger={["click"]}>
+                  <span
+                    className='ant-dropdown-link'
+                    onClick={(e) => e.preventDefault()}>
+                    <PROFILE_IC />
+                  </span>
+                </Dropdown>
+              </>
             </div>
           </Header>
           <Layout className='sideLayout'>
@@ -89,7 +201,7 @@ class Sidemenu extends React.Component {
             </Sider>
             <Layout style={{ padding: "0 24px 24px" }}>
               <div className='content-header'>
-                <h2>Dashboard</h2>
+                <h2> </h2>
 
                 <Breadcrumb style={{ margin: "16px 0" }}>
                   <Breadcrumb.Item>Home</Breadcrumb.Item>
