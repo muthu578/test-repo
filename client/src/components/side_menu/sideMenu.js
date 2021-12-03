@@ -152,8 +152,8 @@ class Sidemenu extends React.Component {
                               <ALERT_IC />
                             </h1>
                             <p>
-                              <span>1</span>
-                              <span>2</span>
+                              <span>11 New</span>
+                              <span>Activity</span>
                             </p>
                             <Button> red</Button>
                           </div>

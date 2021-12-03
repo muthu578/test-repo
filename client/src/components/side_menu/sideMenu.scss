@@ -167,6 +167,7 @@ opacity: 1;
   display: flex;
   align-items: center;
   width: 100%;
+  padding: 0 15px;
   &__grp {
     display: flex;
     align-items: center;
@@ -179,6 +180,13 @@ opacity: 1;
       border-radius: 50%;
       text-align: center;
       background: #ffffffa3;
+    margin-right: 20px;
+    }
+    p{
+      color: #fff;
+      span {
+        display: block;
+      }
     }
   }
 }
