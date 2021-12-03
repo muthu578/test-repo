@@ -1,7 +1,8 @@
 import React from "react";
-import { Layout, Menu, Breadcrumb, Dropdown, List, Avatar } from "antd";
+import { Layout, Menu, Breadcrumb, Dropdown, List, Avatar, Button } from "antd";
 
 import logo from "../../../src/assets/images/logo.svg";
+
 import {
   DASHBOARD_IC,
   ANALYSIS_IC,
@@ -13,6 +14,8 @@ import {
   ALERT_IC,
   LANG_IC,
   PROFILE_IC,
+  LEFT_IC,
+  RIGHT_IC,
 } from "../../assets/images/icons/navigation/navigation";
 import "./sideMenu.scss";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -40,6 +43,19 @@ const data = [
     title: "Ant Design Title 4",
   },
 ];
+
+const ProfieListdata = [
+  {
+    title: "Profile",
+    img: <PROFILE_IC />,
+    desc: "Account settings and more",
+  },
+  {
+    title: "Change Password",
+    img: <LANG_IC />,
+    desc: "Identity and authority confirmation",
+  },
+];
 class Sidemenu extends React.Component {
   constructor(props) {
     super(props);
@@ -65,24 +81,11 @@ class Sidemenu extends React.Component {
               <>
                 <Dropdown
                   overlay={
-                    <List
-                      itemLayout='horizontal'
-                      className='list_item'
-                      dataSource={data}
-                      renderItem={(item) => (
-                        <List.Item>
-                          <List.Item.Meta
-                            avatar={
-                              <Avatar src='https://joeschmoe.io/api/v1/random' />
-                            }
-                            title={
-                              <a href='https://ant.design'>{item.title}</a>
-                            }
-                            description='Ant Design, a design language for background applications, is refined by Ant UED Team'
-                          />
-                        </List.Item>
-                      )}
-                    />
+                    <Menu>
+                      <Menu.Item key='0'>English</Menu.Item>
+                      <Menu.Item key='1'>Chinese</Menu.Item>
+                      <Menu.Item key='1'>Chinese traditional</Menu.Item>
+                    </Menu>
                   }
                   trigger={["click"]}>
                   <span
@@ -105,9 +108,7 @@ class Sidemenu extends React.Component {
                             avatar={
                               <Avatar src='https://joeschmoe.io/api/v1/random' />
                             }
-                            title={
-                              <a href='https://ant.design'>{item.title}</a>
-                            }
+                            title={<p>{item.title}</p>}
                             description='Ant Design, a design language for background applications, is refined by Ant UED Team'
                           />
                         </List.Item>
@@ -140,11 +141,45 @@ class Sidemenu extends React.Component {
                 </Dropdown> */}
                 <Dropdown
                   overlay={
-                    <Menu>
-                      <Menu.Item key='0'>Menu Item One</Menu.Item>
-                      <Menu.Item key='1'>Menu Item Two</Menu.Item>
-                      <Menu.Item key='1'>Menu Item Three</Menu.Item>
-                    </Menu>
+                    <List
+                      itemLayout='horizontal'
+                      className='list_item no-padding-list'
+                      dataSource={ProfieListdata}
+                      header={
+                        <div className='list-header'>
+                          <div className='list-header__grp'>
+                            <h1>
+                              <ALERT_IC />
+                            </h1>
+                            <p>
+                              <span>1</span>
+                              <span>2</span>
+                            </p>
+                            <Button> red</Button>
+                          </div>
+                        </div>
+                      }
+                      footer={
+                        <div>
+                          {" "}
+                          <Button type='primary'>Sign out</Button>
+                        </div>
+                      }
+                      renderItem={(item) => (
+                        <List.Item
+                          actions={[
+                            <a key='list-loadmore-edit'>
+                              <RIGHT_IC />
+                            </a>,
+                          ]}>
+                          <List.Item.Meta
+                            avatar={item.img}
+                            title={<p>{item.title}</p>}
+                            description={item.desc}
+                          />
+                        </List.Item>
+                      )}
+                    />
                   }
                   trigger={["click"]}>
                   <span
