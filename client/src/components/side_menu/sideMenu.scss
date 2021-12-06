@@ -171,8 +171,12 @@ opacity: 1;
   &__grp {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
-
+    .flex-grp {
+      display: flex;
+      align-items: center;
+    }
     h1 {
       line-height: 60px;
       width: 60px;
@@ -181,11 +185,18 @@ opacity: 1;
       text-align: center;
       background: #ffffffa3;
     margin-right: 20px;
+    svg {
+    height: 40px;
+    width: 40px;
+    position: relative;
+    top: 10px;
+    }
     }
     p{
       color: #fff;
       span {
         display: block;
+        font-size: 18px;
       }
     }
   }

@@ -100,8 +100,24 @@ class Sidemenu extends React.Component {
                   overlay={
                     <List
                       itemLayout='horizontal'
-                      className='list_item'
+                      className='list_item no-padding-list'
                       dataSource={data}
+                      header={
+                        <div className='list-header'>
+                          <div className='list-header__grp'>
+                            <div className='flex-grp'>
+                              <h1>
+                                <ALERT_IC />
+                              </h1>
+                              <p>
+                                <span>11 New</span>
+                                <span>Activity</span>
+                              </p>
+                            </div>
+                            <Button className='btn-secondary'> red</Button>
+                          </div>
+                        </div>
+                      }
                       renderItem={(item) => (
                         <List.Item>
                           <List.Item.Meta
@@ -148,14 +164,15 @@ class Sidemenu extends React.Component {
                       header={
                         <div className='list-header'>
                           <div className='list-header__grp'>
-                            <h1>
-                              <ALERT_IC />
-                            </h1>
-                            <p>
-                              <span>11 New</span>
-                              <span>Activity</span>
-                            </p>
-                            <Button> red</Button>
+                            <div className='flex-grp'>
+                              <h1>
+                                <PROFILE_IC />
+                              </h1>
+                              <p>
+                                <span>Lucas Stark</span>
+                                <span>Global Admin</span>
+                              </p>
+                            </div>
                           </div>
                         </div>
                       }
