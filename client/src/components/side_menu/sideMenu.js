@@ -114,7 +114,10 @@ class Sidemenu extends React.Component {
                                 <span>Activity</span>
                               </p>
                             </div>
-                            <Button className='btn-secondary'> red</Button>
+                            <Button className='btn-secondary'>
+                              {" "}
+                              Clear All
+                            </Button>
                           </div>
                         </div>
                       }
