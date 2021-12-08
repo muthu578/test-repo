@@ -18,7 +18,12 @@ import {
   RIGHT_IC,
 } from "../../assets/images/icons/navigation/navigation";
 import "./sideMenu.scss";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+} from "react-router-dom";
 
 import Dashboard from "../../pages/Dashboard/Dashboard";
 import Entities from "../../pages/Entities/Entities";
@@ -59,15 +64,24 @@ const ProfieListdata = [
 class Sidemenu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { collapsed: true };
+    this.state = { collapsed: true, islogout: false };
   }
 
   onCollapse = (collapsed) => {
     console.log(collapsed);
     this.setState({ collapsed });
   };
+  signOut = () => {
+    localStorage.removeItem("token");
+    this.setState({
+      islogout: true,
+    });
+  };
 
   render() {
+    if (this.state.islogout) {
+      return <Redirect to='/login' />;
+    }
     return (
       <div className='sideMenu'>
         <Layout>
@@ -182,7 +196,9 @@ class Sidemenu extends React.Component {
                       footer={
                         <div>
                           {" "}
-                          <Button type='primary'>Sign out</Button>
+                          <Button onClick={this.signOut} type='primary'>
+                            Sign out
+                          </Button>
                         </div>
                       }
                       renderItem={(item) => (

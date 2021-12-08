@@ -2,32 +2,37 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
-import "../src/main.css"; // or 'antd/dist/antd.less'
-
+import "../src/main.css"; // or 'antd/dist/antd.less'import Login from "../src/pages/Login/Login";
+import Dashboard from "../src/pages/Dashboard/Dashboard";
 import Login from "../src/pages/Login/Login";
 
-import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
+import Sidemenu from "./components/side_menu/sideMenu";
 
-function App() {
-  const [data, setData] = React.useState(null);
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
 
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
-
+export default function App() {
   return (
-    <div className='App'>
-      <>
-        <BrowserRouter>
-          <Switch>
-            <Route path='/login' component={Login} />
-          </Switch>
-        </BrowserRouter>
-      </>
-    </div>
+    <Router>
+      <Switch>
+        <Route path='/login'>
+          <Login />
+        </Route>
+        <ProtectedRoute path='/dashboard'>
+          <Sidemenu />
+        </ProtectedRoute>
+        <Route exact path='/'>
+          <Redirect exact from='/' to='dashboard' />
+        </Route>
+        <Route path='*'>
+          <Redirect from='/' to='dashboard' />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
-
-export default App;
