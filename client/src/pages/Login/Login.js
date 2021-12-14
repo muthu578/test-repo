@@ -14,6 +14,8 @@ class Login extends Component {
       loading: false,
       visible: false,
       forgotUI: false,
+      fields: {},
+      errors: {},
       loginParams: {
         user_id: "",
         user_password: "",
@@ -67,6 +69,67 @@ class Login extends Component {
   handleCancel = () => {
     this.setState({ visible: false, forgotUI: false });
   };
+
+  handleValidation() {
+    let fields = this.state.fields;
+    let errors = {};
+    let formIsValid = true;
+
+    //Name
+    if (!fields["name"]) {
+      formIsValid = false;
+      errors["name"] = "Cannot be empty";
+    }
+
+    if (typeof fields["name"] !== "undefined") {
+      if (!fields["name"].match(/^[a-zA-Z]+$/)) {
+        formIsValid = false;
+        errors["name"] = "Only letters";
+      }
+    }
+
+    //Email
+    if (!fields["email"]) {
+      formIsValid = false;
+      errors["email"] = "Cannot be empty";
+    }
+
+    if (typeof fields["email"] !== "undefined") {
+      let lastAtPos = fields["email"].lastIndexOf("@");
+      let lastDotPos = fields["email"].lastIndexOf(".");
+
+      if (
+        !(
+          lastAtPos < lastDotPos &&
+          lastAtPos > 0 &&
+          fields["email"].indexOf("@@") == -1 &&
+          lastDotPos > 2 &&
+          fields["email"].length - lastDotPos > 2
+        )
+      ) {
+        formIsValid = false;
+        errors["email"] = "Email is not valid";
+      }
+    }
+
+    this.setState({ errors: errors });
+    return formIsValid;
+  }
+
+  contactSubmit(e) {
+    e.preventDefault();
+    if (this.handleValidation()) {
+      console.log("1");
+    } else {
+      console.log("2");
+    }
+  }
+
+  handleChange(field, e) {
+    let fields = this.state.fields;
+    fields[field] = e.target.value;
+    this.setState({ fields });
+  }
 
   render() {
     const { visible, loading } = this.state;
@@ -125,20 +188,24 @@ class Login extends Component {
               </div>
               <div className='row'>
                 <div className='col'>
-                  <Input
-                    type='text'
-                    name='user_id'
-                    className='loginInput'
-                    onChange={this.handleFormChange}
-                    placeholder='Enter Username'
-                  />
-                  <Input
-                    type='password'
-                    className='loginInput'
-                    name='user_password'
-                    onChange={this.handleFormChange}
-                    placeholder='Enter Password'
-                  />
+                  <fieldset className='fieldset'>
+                    <Input
+                      type='text'
+                      name='user_id'
+                      className='loginInput'
+                      onChange={this.handleFormChange}
+                      placeholder='Enter Username'
+                    />
+                  </fieldset>
+                  <fieldset className='fieldset'>
+                    <Input
+                      type='password'
+                      className='loginInput'
+                      name='user_password'
+                      onChange={this.handleFormChange}
+                      placeholder='Enter Password'
+                    />
+                  </fieldset>
                   <p className='local-user'>Local User</p>
                   <input
                     type='submit'
@@ -153,7 +220,10 @@ class Login extends Component {
               </label>
             </form>
           ) : (
-            <form onSubmit={this.forgotPassword} className='form-signin'>
+            <form
+              name='contactform'
+              className='contactform form-signin'
+              onSubmit={this.contactSubmit.bind(this)}>
               <div className='logo-small'>
                 <img src={logoSmall} />
               </div>
@@ -161,23 +231,29 @@ class Login extends Component {
                 <h1> Supermicro Power Manager</h1>
                 <span> Let's Get Started SCC</span>
               </div>
-              <div className='row'>
-                <div className='col'>
+              <div className='col-md-6'>
+                <fieldset className='fieldset'>
                   <Input
+                    refs='email'
                     type='text'
-                    name='user_id'
                     className='loginInput'
-                    onChange={this.handleFormChange}
-                    placeholder='Enter Username'
+                    size='30'
+                    placeholder='Email'
+                    onChange={this.handleChange.bind(this, "email")}
+                    value={this.state.fields["email"]}
                   />
+                  <span className='error'>{this.state.errors["email"]}</span>
+                </fieldset>
+              </div>
+              <div className='col-md-12'>
+                <fieldset className='fieldset'>
                   <input
                     type='submit'
                     className='btn-primary btn-input'
-                    value='Submit'
+                    value='Login'
                   />
-                </div>
+                </fieldset>
               </div>
-              {/* <p>user_id === "admin" && user_password === "123"</p> */}
               <label className='forgot-text'>
                 <span onClick={this.showLogin}> Remember it? Sign in here</span>
               </label>
