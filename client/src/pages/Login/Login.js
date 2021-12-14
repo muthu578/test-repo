@@ -52,7 +52,11 @@ class Login extends Component {
       forgotUI: true,
     });
   };
-
+  showLogin = () => {
+    this.setState({
+      forgotUI: false,
+    });
+  };
   handleOk = () => {
     this.setState({ loading: true });
     setTimeout(() => {
@@ -111,8 +115,6 @@ class Login extends Component {
           onOk={this.handleOk}
           onCancel={this.handleCancel}>
           {this.state.forgotUI === false ? (
-            <p>Test</p>
-          ) : (
             <form onSubmit={this.login} className='form-signin'>
               <div className='logo-small'>
                 <img src={logoSmall} />
@@ -146,11 +148,44 @@ class Login extends Component {
                 </div>
               </div>
               {/* <p>user_id === "admin" && user_password === "123"</p> */}
+              <label className='forgot-text'>
+                <span onClick={this.showForgot}> Forgot Your Password?</span>
+              </label>
+            </form>
+          ) : (
+            <form onSubmit={this.forgotPassword} className='form-signin'>
+              <div className='logo-small'>
+                <img src={logoSmall} />
+              </div>
+              <div className='header-grp'>
+                <h1> Supermicro Power Manager</h1>
+                <span> Let's Get Started SCC</span>
+              </div>
+              <div className='row'>
+                <div className='col'>
+                  <Input
+                    type='text'
+                    name='user_id'
+                    className='loginInput'
+                    onChange={this.handleFormChange}
+                    placeholder='Enter Username'
+                  />
+                  <input
+                    type='submit'
+                    className='btn-primary btn-input'
+                    value='Submit'
+                  />
+                </div>
+              </div>
+              {/* <p>user_id === "admin" && user_password === "123"</p> */}
+              <label className='forgot-text'>
+                <span onClick={this.showLogin}> Remember it? Sign in here</span>
+              </label>
+              <p className='copyright'>
+                Copyright © 2014-2019 Super Micro Computer, Inc.
+              </p>
             </form>
           )}
-          <label className='forgot-text'>
-            <span onClick={this.showForgot}> Forgot Your Password?</span>
-          </label>
         </Modal>
       </>
     );
