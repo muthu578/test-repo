@@ -295,6 +295,9 @@ class Sidemenu extends React.Component {
                 <Route path='/analysis' component={Analysis} />
                 <Route path='/configuration' component={Configuration} />
               </Content>
+              <div className='copyright-grp'>
+                <p> Copyright © 2014-2019 Super Micro Computer, Inc. </p>
+              </div>
             </Layout>
           </Layout>
         </Layout>
