@@ -5,6 +5,7 @@ import { Button, Row, Col, Modal, Input } from "antd";
 import logo from "../../../src/assets/images/icons/logo_SuperMicro.svg";
 import leftBanner from "../../../src/assets/images/layout/SCC@2x.png";
 import logoSmall from "../../../src/assets/images/logo.svg";
+import Dashboard from "../../pages/Dashboard/Dashboard";
 
 class Login extends Component {
   constructor(props) {
@@ -135,7 +136,7 @@ class Login extends Component {
     const { visible, loading } = this.state;
 
     if (localStorage.getItem("token")) {
-      return <Redirect to='/' />;
+      return <Redirect to='/' component={Dashboard} />;
     }
     return (
       <>

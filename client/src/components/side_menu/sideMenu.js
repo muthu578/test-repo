@@ -32,6 +32,7 @@ import Policies from "../../pages/Policies/Policies";
 import Report from "../../pages/Report/Report";
 import Analysis from "../../pages/Analysis/Analysis";
 import Configuration from "../../pages/Configuration/Configuration";
+import Login from "../../pages/Login/Login";
 
 const { Header, Content, Sider } = Layout;
 const data = [
@@ -287,7 +288,7 @@ class Sidemenu extends React.Component {
                   background: "#fff",
                   minHeight: 280,
                 }}>
-                <Route exact path='/' component={Dashboard} />
+                <Route exact path='/dashboard' component={Dashboard} />
                 <Route path='/entities' component={Entities} />
                 <Route path='/policies' component={Policies} />
                 <Route path='/events' component={Events} />

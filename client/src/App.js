@@ -20,14 +20,16 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/login'>
+        <Route exact path='/login'>
           <Login />
         </Route>
         <ProtectedRoute path='/dashboard'>
-          <Sidemenu />
+          <Router>
+            <Sidemenu />
+          </Router>
         </ProtectedRoute>
         <Route exact path='/'>
-          <Redirect exact from='/' to='dashboard' />
+          <Redirect exact from='/' to='dashboard' component={Dashboard} />
         </Route>
         <Route path='*'>
           <Redirect from='/' to='dashboard' />
