@@ -14,7 +14,6 @@ import {
   ALERT_IC,
   LANG_IC,
   PROFILE_IC,
-  LEFT_IC,
   RIGHT_IC,
 } from "../../assets/images/icons/navigation/navigation";
 import "./sideMenu.scss";
@@ -32,7 +31,7 @@ import Policies from "../../pages/Policies/Policies";
 import Report from "../../pages/Report/Report";
 import Analysis from "../../pages/Analysis/Analysis";
 import Configuration from "../../pages/Configuration/Configuration";
-import Login from "../../pages/Login/Login";
+import Profile from "../../pages/Profile/Profile";
 
 const { Header, Content, Sider } = Layout;
 const data = [
@@ -55,11 +54,13 @@ const ProfieListdata = [
     title: "Profile",
     img: <PROFILE_IC />,
     desc: "Account settings and more",
+    url: "/profile",
   },
   {
     title: "Change Password",
     img: <LANG_IC />,
     desc: "Identity and authority confirmation",
+    url: "/password",
   },
 ];
 class Sidemenu extends React.Component {
@@ -205,9 +206,9 @@ class Sidemenu extends React.Component {
                       renderItem={(item) => (
                         <List.Item
                           actions={[
-                            <a key='list-loadmore-edit'>
+                            <Link to={item.url}>
                               <RIGHT_IC />
-                            </a>,
+                            </Link>,
                           ]}>
                           <List.Item.Meta
                             avatar={item.img}
@@ -295,6 +296,7 @@ class Sidemenu extends React.Component {
                 <Route path='/report' component={Report} />
                 <Route path='/analysis' component={Analysis} />
                 <Route path='/configuration' component={Configuration} />
+                <Route path='/profile' component={Profile} />
               </Content>
               <div className='copyright-grp'>
                 <p> Copyright © 2014-2019 Super Micro Computer, Inc. </p>

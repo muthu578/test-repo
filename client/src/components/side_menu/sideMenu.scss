@@ -109,6 +109,8 @@
   }
   .ant-layout-content {
     margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
   }
 }
 .sideMenu {
@@ -224,4 +226,10 @@
     color: #adadad;
     opacity: 1;
   }
+}
+.layout-white {
+  background-color: #fff;
+  min-height: 100%;
+  padding: 20px 24px;
+  border-radius: 5px;
 }

@@ -4,7 +4,7 @@ import "./Configuration.scss";
 export default function Configuration() {
   return (
     <>
-      <section className='configuration'>
+      <section className='configuration layout-white'>
         <h1> Configuration </h1>
       </section>
     </>

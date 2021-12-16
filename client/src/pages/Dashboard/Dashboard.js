@@ -1,9 +1,12 @@
 import React from "react";
+import "./Dashboard.scss";
 
 export default function Dashboard() {
   return (
     <>
-      <p> Dashboard </p>
+      <section className='dashboard layout-white'>
+        <h1> Dashboard </h1>
+      </section>
     </>
   );
 }
