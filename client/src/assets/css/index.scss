@@ -330,10 +330,18 @@ li {
 .loginInput {
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #dee2e6;
-  border-radius: 5px;
+  border-radius: 2px;
   opacity: 1;
   height: 38px;
   line-height: 38px;
   margin-bottom: 20px;
   width: 100%;
+}
+.ant-btn-primary {
+  background: #1c7bcf 0% 0% no-repeat padding-box;
+  border-radius: 5px;
+  opacity: 1;
+  // padding: 7px 34px;
+  border: none;
+  box-shadow: none;
 }
