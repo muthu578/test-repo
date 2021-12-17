@@ -32,6 +32,7 @@ import Report from "../../pages/Report/Report";
 import Analysis from "../../pages/Analysis/Analysis";
 import Configuration from "../../pages/Configuration/Configuration";
 import Profile from "../../pages/Profile/Profile";
+import Password from "../../pages/Password/Password";
 
 const { Header, Content, Sider } = Layout;
 const data = [
@@ -296,6 +297,7 @@ class Sidemenu extends React.Component {
                 <Route path='/analysis' component={Analysis} />
                 <Route path='/configuration' component={Configuration} />
                 <Route path='/profile' component={Profile} />
+                <Route path='/password' component={Password} />
               </Content>
               <div className='copyright-grp'>
                 <p> Copyright © 2014-2019 Super Micro Computer, Inc. </p>

@@ -10,6 +10,16 @@ export default function validate(values) {
   } else if (values.password.length < 8) {
     errors.password = "Password must be 8 or more characters";
   }
+  if (!values.newpassword) {
+    errors.newpassword = "Password is required";
+  } else if (values.newpassword.length < 8) {
+    errors.newpassword = "Password must be 8 or more characters";
+  }
+  if (!values.verifypassword) {
+    errors.verifypassword = "Password is required";
+  } else if (values.verifypassword.length < 8) {
+    errors.verifypassword = "Password must be 8 or more characters";
+  }
   if (!values.fname) {
     errors.fname = "First Name is required";
   }
