@@ -1,7 +1,7 @@
 $minWidth: 100%;
-$font:  'Roboto', sans-serif;
-$fontSemiBold: "Roboto-Semibold";
-$fontBold: "Roboto-Bold";
+$font: "Poppins", sans-serif;
+$fontSemiBold: "Poppins-Semibold";
+$fontBold: "Poppins-Bold";
 $linkColor: red;
 $fontColor: #000000;
 
@@ -21,8 +21,9 @@ $fontColor: #000000;
 
 $login-width: 1020px;
 $login-height: 483px;
-$login-background: #FFFFFF;
-$login-boxshadow: 0 10px 50px 0 rgba(47, 4, 127, 0.48), 0 2px 65px 0 rgba(255, 255, 255, 0.7);
+$login-background: #ffffff;
+$login-boxshadow: 0 10px 50px 0 rgba(47, 4, 127, 0.48),
+  0 2px 65px 0 rgba(255, 255, 255, 0.7);
 
 $view-header-height: 100px;
 $view-footer-height: 70px;
