@@ -1,3 +1,38 @@
 .configuration {
-    font-size: 20px;
+  font-size: 20px;
+  .ant-pagination-options {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    margin: 0;
+  }
+  .btnGrp {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    margin: 30px 0 26px;
+  }
+  .iconbtnGrp {
+    width: 100%;
+    display: inline;
+    text-align: right;
+    margin-left: 25px;
+    .ant-btn-icon-only {
+      width: 35px;
+      height: 35px;
+      border-radius: 0px;
+      margin-right: 4px;
+      img {
+        width: 16px;
+        height: 16px;
+      }
+    }
+    .ant-btn-icon-only:first-child {
+      border-radius: 5px 0px 0px 5px;
+    }
+    .ant-btn-icon-only:last-child {
+      border-radius: 0px 5px 5px 0px;
+      margin-right: 0;
+    }
+  }
 }

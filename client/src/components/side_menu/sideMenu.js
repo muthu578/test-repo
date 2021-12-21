@@ -288,6 +288,7 @@ class Sidemenu extends React.Component {
                   margin: "24px 16px",
                   padding: 24,
                   background: "#fff",
+                  minHeight: "100%",
                 }}>
                 <Route exact path='/dashboard' component={Dashboard} />
                 <Route path='/entities' component={Entities} />

@@ -106,6 +106,29 @@ const Password = () => {
                           )}
                         </div>
                       </div>
+                      <div className='field'>
+                        <label className='label'>Verify Password</label>
+                        <div className='control'>
+                          <fieldset className='fieldset'>
+                            <Input
+                              className={`loginInput input ${
+                                errors.verifypassword && "is-danger"
+                              }`}
+                              type='text'
+                              name='verifypassword'
+                              placeholder='Enter Verify Password'
+                              onChange={handleChange}
+                              value={values.verifypassword || ""}
+                              required
+                            />
+                          </fieldset>
+                          {errors.verifypassword && (
+                            <p className='help is-danger error'>
+                              {errors.verifypassword}
+                            </p>
+                          )}
+                        </div>
+                      </div>
                       <div className='btn-grp'>
                         <button
                           type='submit'
