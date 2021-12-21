@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Button, Modal, Input } from "antd";
+import { Table, Button, Modal, Input, Row, Col } from "antd";
 import "./Configuration.scss";
 import BtnAdd from "../../../src/assets/images/icons/navigation/btn_Add.svg";
 import EditIcon from "../../../src/assets/images/icons/navigation/edit.svg";
@@ -11,6 +11,7 @@ import RefreshIcon from "../../../src/assets/images/icons/navigation/refresh.svg
 
 import validate from "../../helper/validationForm";
 import qs from "qs";
+const { TextArea } = Input;
 
 const columns = [
   {
@@ -45,6 +46,8 @@ class Configuration extends React.Component {
   state = {
     data: [],
     modal2Visible: false,
+    fields: {},
+    errors: {},
     pagination: {
       current: 1,
       pageSize: 10,
@@ -79,6 +82,8 @@ class Configuration extends React.Component {
         console.log(data);
         this.setState({
           loading: false,
+          fields: {},
+          errors: {},
           data: data.results,
           pagination: {
             ...params.pagination,
@@ -89,9 +94,68 @@ class Configuration extends React.Component {
         });
       });
   };
+  handleValidation() {
+    let fields = this.state.fields;
+    let errors = {};
+    let formIsValid = true;
 
+    //Name
+    if (!fields["name"]) {
+      formIsValid = false;
+      errors["name"] = "Cannot be empty";
+    }
+
+    if (typeof fields["name"] !== "undefined") {
+      if (!fields["name"].match(/^[a-zA-Z]+$/)) {
+        formIsValid = false;
+        errors["name"] = "Only letters";
+      }
+    }
+
+    //Email
+    if (!fields["email"]) {
+      formIsValid = false;
+      errors["email"] = "Cannot be empty";
+    }
+
+    if (typeof fields["email"] !== "undefined") {
+      let lastAtPos = fields["email"].lastIndexOf("@");
+      let lastDotPos = fields["email"].lastIndexOf(".");
+
+      if (
+        !(
+          lastAtPos < lastDotPos &&
+          lastAtPos > 0 &&
+          fields["email"].indexOf("@@") == -1 &&
+          lastDotPos > 2 &&
+          fields["email"].length - lastDotPos > 2
+        )
+      ) {
+        formIsValid = false;
+        errors["email"] = "Email is not valid";
+      }
+    }
+
+    this.setState({ errors: errors });
+    return formIsValid;
+  }
+
+  contactSubmit(e) {
+    e.preventDefault();
+    if (this.handleValidation()) {
+      console.log("1");
+    } else {
+      console.log("2");
+    }
+  }
+
+  handleChange(field, e) {
+    let fields = this.state.fields;
+    fields[field] = e.target.value;
+    this.setState({ fields });
+  }
   render() {
-    const { data, pagination, loading } = this.state;
+    const { data, pagination, loading, fields, errors } = this.state;
     return (
       <section className='configuration layout-white'>
         <h1> Users </h1>
@@ -131,13 +195,151 @@ class Configuration extends React.Component {
           onChange={this.handleTableChange}
         />
         <Modal
-          title='Vertically centered modal dialog'
+          title={
+            <div className='adduserModaltitle'>
+              <p> Add User </p>
+              <span>
+                {" "}
+                An email for setting a password will be sent automatically
+              </span>
+            </div>
+          }
+          width='670px'
+          className='addUserModal'
           centered
           visible={this.state.modal2Visible}
           onOk={() => this.setModal2Visible(false)}
           onCancel={() => this.setModal2Visible(false)}>
           <section>
-            <div>Test</div>
+            <div>
+              <form
+                name='contactform'
+                className='contactform form-signin'
+                onSubmit={this.contactSubmit.bind(this)}>
+                <div className='col-md-24'>
+                  <fieldset className='fieldset'>
+                    <div className='field'>
+                      <label className='label'>
+                        User Name <span> *</span>
+                      </label>
+                      <Input
+                        refs='name'
+                        type='text'
+                        className='loginInput'
+                        size='30'
+                        placeholder='User Name'
+                        onChange={this.handleChange.bind(this, "name")}
+                        value={fields["name"]}
+                      />
+                      <span className='error'>{errors["name"]}</span>
+                    </div>
+                  </fieldset>
+                </div>
+                <Row>
+                  <Col span={12}>
+                    <div className='col-md-6'>
+                      <fieldset className='fieldset'>
+                        <div className='field margin-right-20'>
+                          <label className='label'>First Name</label>
+                          <Input
+                            type='text'
+                            className='loginInput'
+                            size='30'
+                            placeholder='First Name'
+                          />
+                        </div>
+                      </fieldset>
+                    </div>
+                  </Col>
+                  <Col span={12}>
+                    <div className='col-md-6'>
+                      <fieldset className='fieldset'>
+                        <div className='field'>
+                          <label className='label'>Last Name</label>
+                          <Input
+                            type='text'
+                            className='loginInput'
+                            size='30'
+                            placeholder='Last Name'
+                          />
+                        </div>
+                      </fieldset>
+                    </div>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col span={12}>
+                    <div className='col-md-6'>
+                      <fieldset className='fieldset'>
+                        <div className='field margin-right-20'>
+                          <label className='label'>
+                            Email <span> *</span>
+                          </label>
+                          <Input
+                            refs='email'
+                            type='text'
+                            className='loginInput'
+                            size='30'
+                            placeholder='Email'
+                            onChange={this.handleChange.bind(this, "email")}
+                            value={fields["email"]}
+                          />
+                          <span className='error'>{errors["email"]}</span>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </Col>
+                  <Col span={12}>
+                    {" "}
+                    <div className='col-md-6'>
+                      <fieldset className='fieldset'>
+                        <div className='field'>
+                          <label className='label'>Mobile Phone</label>
+                          <Input
+                            type='text'
+                            className='loginInput'
+                            size='30'
+                            placeholder='Mobile Phone'
+                          />
+                        </div>
+                      </fieldset>
+                    </div>
+                  </Col>
+                </Row>
+
+                <div className='col-md-6'>
+                  <fieldset className='fieldset'>
+                    <div className='field'>
+                      <label className='label'>
+                        Role <span> *</span>
+                      </label>
+                      <Input
+                        type='text'
+                        className='loginInput'
+                        size='30'
+                        placeholder='Role'
+                      />
+                    </div>
+                  </fieldset>
+                </div>
+                <div className='col-md-6'>
+                  <fieldset className='fieldset'>
+                    <div className='field'>
+                      <label className='label'>Description</label>
+                      <TextArea rows={4} />
+                    </div>
+                  </fieldset>
+                </div>
+                <div className='btn-grp'>
+                  <button
+                    type='submit'
+                    className='button is-block is-info is-fullwidth ant-btn-primary'>
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
           </section>
         </Modal>
       </section>

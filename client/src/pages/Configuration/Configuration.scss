@@ -1,5 +1,6 @@
 .configuration {
   font-size: 20px;
+
   .ant-pagination-options {
     position: absolute;
     top: -60px;
@@ -35,4 +36,69 @@
       margin-right: 0;
     }
   }
+}
+
+.addUserModal {
+  .ant-modal-header {
+    padding-bottom: 0;
+    border: none;
+  }
+  .ant-modal-footer {
+    display: none;
+  }
+  .ant-btn-primary {
+    padding: 7px 34px;
+  }
+  .btn-grp {
+    text-align: right;
+    margin-top: 60px;
+  }
+  .field {
+    .label {
+      font: var(--unnamed-font-style-normal) normal
+        var(--unnamed-font-weight-normal) var(--unnamed-font-size-13) /
+        var(--unnamed-line-spacing-20) var(--unnamed-font-family-poppins);
+      letter-spacing: var(--unnamed-character-spacing-0);
+      color: var(--unnamed-color-48465b);
+      text-align: left;
+      font: normal normal normal 13px/20px Poppins;
+      letter-spacing: 0px;
+      color: #48465b;
+      opacity: 1;
+      margin-bottom: 7px;
+      display: block;
+      span {
+        color: #f24f7c;
+      }
+    }
+  }
+}
+.adduserModaltitle {
+  p {
+    font: var(--unnamed-font-style-normal) normal
+      var(--unnamed-font-weight-normal) var(--unnamed-font-size-18) /
+      var(--unnamed-line-spacing-27) var(--unnamed-font-family-poppins);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-48465b);
+    text-align: left;
+    font: normal normal normal 18px/27px Poppins;
+    letter-spacing: 0px;
+    color: #48465b;
+    opacity: 1;
+  }
+  span {
+    font: var(--unnamed-font-style-normal) normal
+      var(--unnamed-font-weight-normal) var(--unnamed-font-size-13) /
+      var(--unnamed-line-spacing-20) var(--unnamed-font-family-poppins);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-adadad);
+    text-align: left;
+    font: normal normal normal 13px/20px Poppins;
+    letter-spacing: 0px;
+    color: #adadad;
+    opacity: 1;
+  }
+}
+.margin-right-20 {
+  margin-right: 20px;
 }
