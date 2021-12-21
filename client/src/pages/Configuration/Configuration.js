@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Button, Pagination } from "antd";
+import { Table, Button, Modal, Input } from "antd";
 import "./Configuration.scss";
 import BtnAdd from "../../../src/assets/images/icons/navigation/btn_Add.svg";
 import EditIcon from "../../../src/assets/images/icons/navigation/edit.svg";
@@ -9,6 +9,7 @@ import SearcheIcon from "../../../src/assets/images/icons/navigation/search.svg"
 import EyeIcon from "../../../src/assets/images/icons/navigation/eye.png";
 import RefreshIcon from "../../../src/assets/images/icons/navigation/refresh.svg";
 
+import validate from "../../helper/validationForm";
 import qs from "qs";
 
 const columns = [
@@ -43,9 +44,11 @@ const getRandomuserParams = (params) => ({
 class Configuration extends React.Component {
   state = {
     data: [],
+    modal2Visible: false,
     pagination: {
       current: 1,
       pageSize: 10,
+      showSizeChanger: true,
     },
     loading: false,
   };
@@ -54,7 +57,9 @@ class Configuration extends React.Component {
     const { pagination } = this.state;
     this.fetch({ pagination });
   }
-
+  setModal2Visible(modal2Visible) {
+    this.setState({ modal2Visible });
+  }
   handleTableChange = (pagination, filters, sorter) => {
     this.fetch({
       sortField: sorter.field,
@@ -92,7 +97,12 @@ class Configuration extends React.Component {
         <h1> Users </h1>
         <div className='btnGrp'>
           <div className='iconbtnGrp'>
-            <Button type='primary' icon={<img src={BtnAdd} />} size='large' />
+            <Button
+              type='primary'
+              onClick={() => this.setModal2Visible(true)}
+              icon={<img src={BtnAdd} />}
+              size='large'
+            />
             <Button type='primary' icon={<img src={EditIcon} />} size='large' />
             <Button
               type='primary'
@@ -120,6 +130,16 @@ class Configuration extends React.Component {
           loading={loading}
           onChange={this.handleTableChange}
         />
+        <Modal
+          title='Vertically centered modal dialog'
+          centered
+          visible={this.state.modal2Visible}
+          onOk={() => this.setModal2Visible(false)}
+          onCancel={() => this.setModal2Visible(false)}>
+          <section>
+            <div>Test</div>
+          </section>
+        </Modal>
       </section>
     );
   }
