@@ -54,6 +54,7 @@ class Configuration extends React.Component {
       showSizeChanger: true,
     },
     loading: false,
+    selectedRowKeys: [],
   };
 
   componentDidMount() {
@@ -154,8 +155,26 @@ class Configuration extends React.Component {
     fields[field] = e.target.value;
     this.setState({ fields });
   }
+
+  onSelectChange = (selectedRowKeys) => {
+    console.log("selectedRowKeys changed: ", selectedRowKeys);
+    this.setState({ selectedRowKeys });
+  };
+
   render() {
-    const { data, pagination, loading, fields, errors } = this.state;
+    const {
+      data,
+      pagination,
+      loading,
+      fields,
+      errors,
+      selectedRowKeys,
+    } = this.state;
+    const rowSelection = {
+      selectedRowKeys,
+      onChange: this.onSelectChange,
+    };
+    const hasSelected = selectedRowKeys.length > 0;
     return (
       <section className='configuration layout-white'>
         <h1> Users </h1>
@@ -193,6 +212,7 @@ class Configuration extends React.Component {
           pagination={pagination}
           loading={loading}
           onChange={this.handleTableChange}
+          rowSelection={rowSelection}
         />
         <Modal
           title={
