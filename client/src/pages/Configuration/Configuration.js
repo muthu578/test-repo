@@ -16,23 +16,38 @@ const { TextArea } = Input;
 const columns = [
   {
     title: "Name",
-    dataIndex: "name",
+    dataIndex: "username",
     sorter: true,
-    render: (name) => `${name.first} ${name.last}`,
-    width: "20%",
   },
   {
-    title: "Gender",
-    dataIndex: "gender",
-    filters: [
-      { text: "Male", value: "male" },
-      { text: "Female", value: "female" },
-    ],
-    width: "20%",
+    title: "User",
+    dataIndex: "name",
   },
   {
     title: "Email",
     dataIndex: "email",
+  },
+  {
+    title: "Mobile Phone",
+    dataIndex: "mobile",
+  },
+  {
+    title: "Role",
+    dataIndex: "role",
+  },
+  {
+    title: "Description",
+    dataIndex: "description",
+  },
+  {
+    title: "Create Time",
+    dataIndex: "createtime",
+    sorter: true,
+  },
+  {
+    title: "Update Time",
+    dataIndex: "updatetime",
+    sorter: true,
   },
 ];
 
@@ -75,8 +90,13 @@ class Configuration extends React.Component {
 
   fetch = (params = {}) => {
     this.setState({ loading: true });
+    // fetch(
+    //   `https://randomuser.me/api?${qs.stringify(getRandomuserParams(params))}`
+    // )
     fetch(
-      `https://randomuser.me/api?${qs.stringify(getRandomuserParams(params))}`
+      `https://mocki.io/v1/27da5f26-9587-4963-b1d0-43ddd5274ba5?${qs.stringify(
+        getRandomuserParams(params)
+      )}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -85,10 +105,10 @@ class Configuration extends React.Component {
           loading: false,
           fields: {},
           errors: {},
-          data: data.results,
+          data: data,
           pagination: {
             ...params.pagination,
-            total: 100,
+            total: 30,
             // 200 is mock data, you should read it from server
             // total: data.totalCount,
           },
@@ -207,7 +227,7 @@ class Configuration extends React.Component {
 
         <Table
           columns={columns}
-          rowKey={(record) => record.login.uuid}
+          // rowKey={(record) => record.id}
           dataSource={data}
           pagination={pagination}
           loading={loading}
