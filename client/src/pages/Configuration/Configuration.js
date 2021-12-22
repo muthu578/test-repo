@@ -34,6 +34,11 @@ const columns = [
   {
     title: "Role",
     dataIndex: "role",
+    render(text, record) {
+      return {
+        children: <div className='role'>{text}</div>,
+      };
+    },
   },
   {
     title: "Description",
