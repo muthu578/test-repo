@@ -6,7 +6,7 @@ import EditIcon from "../../../src/assets/images/icons/navigation/edit.svg";
 import DeleteIcon from "../../../src/assets/images/icons/navigation/ic_delete.svg";
 import DisableIcon from "../../../src/assets/images/icons/navigation/disable.svg";
 import SearcheIcon from "../../../src/assets/images/icons/navigation/search.svg";
-import EyeIcon from "../../../src/assets/images/icons/navigation/eye.png";
+import EyeIcon from "../../../src/assets/images/icons/navigation/eye.svg";
 import RefreshIcon from "../../../src/assets/images/icons/navigation/refresh.svg";
 
 import validate from "../../helper/validationForm";
@@ -180,9 +180,9 @@ class Configuration extends React.Component {
             />
           </div>
           <div className='iconbtnGrp'>
-            <Button shape='circle' icon={<img src={SearcheIcon} />} />
-            <Button shape='circle' icon={<img src={EyeIcon} />} />
             <Button shape='circle' icon={<img src={RefreshIcon} />} />
+            <Button shape='circle' icon={<img src={EyeIcon} />} />
+            <Button shape='circle' icon={<img src={SearcheIcon} />} />
           </div>
         </div>
 

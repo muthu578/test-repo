@@ -11,21 +11,32 @@
     margin: 0;
   }
   .btnGrp {
-    display: inline-block;
+    display: inline-flex;
     width: 100%;
     text-align: right;
     margin: 30px 0 26px;
+    justify-content: flex-end;
   }
   .iconbtnGrp {
-    width: 100%;
-    display: inline;
     text-align: right;
     margin-left: 25px;
+    .ant-btn-circle {
+      img {
+        width: 20px !important;
+        height: 20px !important;
+        position: relative;
+        top: 3px;
+      }
+    }
     .ant-btn-icon-only {
       width: 35px;
       height: 35px;
       border-radius: 0px;
       margin-right: 4px;
+      line-height: 38px;
+      box-sizing: content-box;
+      box-shadow: none;
+      padding: 0;
       img {
         width: 16px;
         height: 16px;
