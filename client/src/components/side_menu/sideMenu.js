@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Layout,
   Menu,
@@ -31,6 +32,7 @@ import {
   Route,
   Link,
   Redirect,
+  useParams,
 } from "react-router-dom";
 
 import Dashboard from "../../pages/Dashboard/Dashboard";
@@ -42,6 +44,7 @@ import Analysis from "../../pages/Analysis/Analysis";
 import Configuration from "../../pages/Configuration/Configuration";
 import Profile from "../../pages/Profile/Profile";
 import Password from "../../pages/Password/Password";
+import SubMenuLayout from "./subMenu";
 
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -67,20 +70,26 @@ const ProfieListdata = [
     img: <PROFILE_IC />,
     desc: "Account settings and more",
     url: "/profile",
+    key: "profile",
   },
   {
     title: "Change Password",
     img: <LANG_IC />,
     desc: "Identity and authority confirmation",
     url: "/password",
+    key: "password",
   },
 ];
 class Sidemenu extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { collapsed: true, islogout: false };
+    this.state = { collapsed: true, islogout: false, path: "" };
   }
+  // componentDidMount() {
+  //   const paramObjNew = new URLSearchParams(this.props.location.search);
 
+  //   console.log(paramObjNew);
+  // }
   onCollapse = (collapsed) => {
     console.log(collapsed);
     this.setState({ collapsed });
@@ -93,6 +102,14 @@ class Sidemenu extends React.Component {
   };
   handleClick = (e) => {
     console.log("click ", e);
+    console.log(this.props);
+    this.setState({ path: e.key });
+  };
+  handleProfileClick = (e) => {
+    let urlWithBasePath = e.target.baseURI;
+    let resultUrl = urlWithBasePath.replace(/^http[s]?:\/\/.+?\//, ""); // resultUrl => www.facebook.com
+    console.log(resultUrl);
+    this.setState({ path: resultUrl });
   };
 
   render() {
@@ -174,25 +191,11 @@ class Sidemenu extends React.Component {
                 </Dropdown>
               </>
               <>
-                {/* <Dropdown
-                  overlay={
-                    <Menu>
-                      <Menu.Item key='0'>Menu Item One</Menu.Item>
-                      <Menu.Item key='1'>Menu Item Two</Menu.Item>
-                      <Menu.Item key='1'>Menu Item Three</Menu.Item>
-                    </Menu>
-                  }
-                  trigger={["click"]}>
-                  <span
-                    className='ant-dropdown-link'
-                    onClick={(e) => e.preventDefault()}>
-                    <PROFILE_IC />
-                  </span>
-                </Dropdown> */}
                 <Dropdown
                   overlay={
                     <List
                       itemLayout='horizontal'
+                      key='profile'
                       className='list_item no-padding-list'
                       dataSource={ProfieListdata}
                       header={
@@ -220,6 +223,8 @@ class Sidemenu extends React.Component {
                       }
                       renderItem={(item) => (
                         <List.Item
+                          key={item.key}
+                          onClick={this.handleProfileClick}
                           actions={[
                             <Link to={item.url}>
                               <RIGHT_IC />
@@ -253,72 +258,45 @@ class Sidemenu extends React.Component {
               onCollapse={this.onCollapse}>
               <Menu
                 theme='dark'
+                onClick={this.handleClick}
                 onMouseEnter={() => this.setState({ collapsed: false })}
                 onMouseLeave={() => this.setState({ collapsed: true })}
                 defaultSelectedKeys={["1"]}
                 mode='inline'>
-                <Menu.Item key='1' icon={<DASHBOARD_IC />}>
+                <Menu.Item key='dashboard' icon={<DASHBOARD_IC />}>
                   <span>Dashboard</span>
                   <Link to='/' />
                 </Menu.Item>
-                <Menu.Item key='2' icon={<ENTITIES_IC />}>
+                <Menu.Item key='entities' icon={<ENTITIES_IC />}>
                   <span>Entities</span>
                   <Link to='/entities' />
                 </Menu.Item>
-                <Menu.Item key='3' icon={<POLICIES_IC />}>
+                <Menu.Item key='policies' icon={<POLICIES_IC />}>
                   <span>Policies</span>
                   <Link to='/policies' />
                 </Menu.Item>
-                <Menu.Item key='4' icon={<EVENTS_IC />}>
+                <Menu.Item key='events' icon={<EVENTS_IC />}>
                   <span>Events</span>
                   <Link to='/events' />
                 </Menu.Item>
-                <Menu.Item key='5' icon={<REPORT_IC />}>
+                <Menu.Item key='Report' icon={<REPORT_IC />}>
                   <span>Report</span>
                   <Link to='/Report' />
                 </Menu.Item>
-                <Menu.Item key='6' icon={<ANALYSIS_IC />}>
+                <Menu.Item key='analysis' icon={<ANALYSIS_IC />}>
                   <span>Analysis</span>
                   <Link to='/analysis' />
                 </Menu.Item>
-                <Menu.Item key='7' icon={<SETTINGS_IC />}>
+                <Menu.Item key='configuration' icon={<SETTINGS_IC />}>
                   <span>Configuration</span>
                   <Link to='/configuration' />
                 </Menu.Item>
               </Menu>
             </Sider>
-            <Menu
-              onClick={this.handleClick}
-              style={{ width: 200 }}
-              defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              className={
-                this.state.collapsed
-                  ? "sub-menu-layout"
-                  : "sub-menu-layout fixed"
-              }
-              mode='inline'>
-              <SubMenu key='sub1' title='Navigation One'>
-                <Menu.Item key='1'>Option 1</Menu.Item>
-                <Menu.Item key='2'>Option 2</Menu.Item>
-                <Menu.Item key='3'>Option 3</Menu.Item>
-                <Menu.Item key='4'>Option 4</Menu.Item>
-              </SubMenu>
-              <SubMenu key='sub2' title='Navigation Two'>
-                <Menu.Item key='5'>Option 5</Menu.Item>
-                <Menu.Item key='6'>Option 6</Menu.Item>
-                <SubMenu key='sub3' title='Submenu'>
-                  <Menu.Item key='7'>Option 7</Menu.Item>
-                  <Menu.Item key='8'>Option 8</Menu.Item>
-                </SubMenu>
-              </SubMenu>
-              <SubMenu key='sub4' title='Navigation Three'>
-                <Menu.Item key='9'>Option 9</Menu.Item>
-                <Menu.Item key='10'>Option 10</Menu.Item>
-                <Menu.Item key='11'>Option 11</Menu.Item>
-                <Menu.Item key='12'>Option 12</Menu.Item>
-              </SubMenu>
-            </Menu>
+            <SubMenuLayout
+              collapsed={this.state.collapsed}
+              pathKey={this.state.path}
+            />
             <Layout style={{ padding: "0 24px 24px" }}>
               <div className='content-header'>
                 <h2> </h2>
